@@ -42,7 +42,6 @@ func InvokeBSOD() error {
 		RtlAdjustPrivilege.Call(19, 1, 0, uintptr(unsafe.Pointer(&tempBool)))
 		NtRaiseHardError.Call(uintptr(NtErrorCode), 0, 0, 0, 6, uintptr(unsafe.Pointer(&tempString)))
 		return ErrFailedBSOD
-	} else {
-		return ErrNotWindows
 	}
+	return ErrNotWindows
 }
