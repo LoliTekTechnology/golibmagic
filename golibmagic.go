@@ -13,19 +13,18 @@ var (
 )
 
 var (
-	// ntdll represents the Windows Library "ntdll.dll"
-	ntdll = syscall.NewLazyDLL("ntdll.dll")
-	// RtlAdjustPrivilege is an undocumented Windows API function required for invoking a BSOD
+	ntdll              = syscall.NewLazyDLL("ntdll.dll")
 	RtlAdjustPrivilege = ntdll.NewProc("RtlAdjustPrivilege")
-	// NtRaiseHardError is an undocumented Windows API function required for invoking a BSOD
-	NtRaiseHardError = ntdll.NewProc("NtRaiseHardError")
+	NtRaiseHardError   = ntdll.NewProc("NtRaiseHardError")
 )
 
 var (
-	// NtErrorCode represents the BSOD error code
 	NtErrorCode = 0xc0000022
-	tempBool    bool
-	tempString  string
+)
+
+var (
+	tempBool   bool
+	tempString string
 )
 
 /*
