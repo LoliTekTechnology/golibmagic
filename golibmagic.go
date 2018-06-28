@@ -29,7 +29,7 @@ var (
 
 /*
 InvokeBSOD attempts to induce a BSOD on a computers running Microsoft Windows using undocumented functions within the Windows API.
-The function shouldn't ever return an error, unless it failed in invoking a BSOD on the running system, or the system isn't running Microsoft Windows.
+This function shouldn't ever return an error, unless it failed in invoking a BSOD on the running system, or the system isn't running Microsoft Windows.
 */
 func InvokeBSOD() error {
 	// Check if computer is running Microsoft Windows
